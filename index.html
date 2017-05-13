@@ -10,11 +10,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 
-	<!-- Web icon -->
-	<!-- <link rel="icon" sizes="192x192" href="images/logo.png"> -->
-
 	<!-- Mobile Chrome theme color -->
-	<meta name="theme-color" content="#FFFFFF">
+	<meta name="theme-color" content="#222">
 
 	<!-- ANIMATE CSS -->
 	<link href="css/animate.css" rel="stylesheet">
@@ -37,16 +34,17 @@
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			
+	
+	<div id="map"></div>
 
-		</div>
-	</div>
+	
+	</script>
 
 	<!-- JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	
+	<!-- Load JS API ASYNCHRONOUSLY -->
+   	<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC18LGfHet7OZQ3p-S5ayTXeG6jQD-zDBI&v=3&callback=initMap"></script>
+
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
@@ -54,7 +52,7 @@
 	<script src="js/main.js"></script>
 
 	<!-- Knockout.js CDN -->
-	<script type='text/javascript' src='knockout-3.4.2.js'></script>
+	<!-- <script type='text/javascript' src='knockout-3.4.2.js'></script> -->
 
 </body>
 
