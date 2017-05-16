@@ -12,7 +12,6 @@ var locations = [
 // Create a map variable
 var map;
 // Complete the following function to initialize the map
-
 function initMap() {
 	var myLatLng = {lat: 37.7749295, lng: -122.4194155};
 	// Create a map object and specify the DOM element for display.
@@ -20,30 +19,41 @@ function initMap() {
 	center: myLatLng,
 	zoom: 13
 });
+	var marker = new google.maps.Marker({
+		position: myLatLng,
+		map: map,
+		title: 'Hello World!'
+	});
 }
 
-var AppModel = function(){
 
+// MODEL //
+
+var AppModel = function(){
+	
 };
 
 // Location constructor (similar to Cat constructor function)
 
 
-// 
+// VIEW MODEL //
 
 var AppViewModel = function(){
 	var self = this;
 // define Location observable array ()
+	this.location = ko.observableArray([]);
 // https://classroom.udacity.com/nanodegrees/nd001/parts/e87c34bf-a9c0-415f-b007-c2c2d7eead73/modules/271165859175461/lessons/3406489055/concepts/34648186930923
 
 };
 
 // instantiate the ViewModel using the new operator and apply the bindings (aka activate KO)
-var appViewModel = new AppViewModel();
+var AppViewModel = new AppViewModel();
 
 // activate knockout apply binding
 ko.applyBindings(new AppViewModel());
 
+
+// VIEW //
 
 var AppView = function(){
 

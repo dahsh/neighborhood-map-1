@@ -1,6 +1,6 @@
-function myModel() {
-	this.firstName = ko.observable("Richard");
-	this.lastName = ko.observable("Chan");
-};
+// function myModel() {
+// 	this.firstName = ko.observable("Richard");
+// 	this.lastName = ko.observable("Chan");
+// };
 
-ko.applyBindings(new myModel());
+// ko.applyBindings(new myModel());
