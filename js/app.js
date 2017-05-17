@@ -26,6 +26,36 @@ function initMap() {
 	});
 }
 
+// API
+
+$(function(){
+
+	var $items = $('#items');
+
+	$.ajax({
+		type: 'GET',
+		url: '/path/to/file',
+		success: function(data){
+			$.each(data, function(i, items){
+				$items.append('<li>item1: ' + items.something +', item2: ' + items.something + '</li>');
+			});
+		},
+		error: function(){
+			alert("wrong");
+		};
+	});
+	
+	$.ajax({
+		type: 'POST',
+		url: '',
+		success: function(data){
+
+		},
+		error: function(){
+			alert("post wrong");
+		};
+	})
+});
 
 // MODEL //
 
