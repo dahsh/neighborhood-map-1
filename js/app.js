@@ -45,6 +45,7 @@ function initMap() {
 	var marker = new google.maps.Marker({
 		position: myLatLng,
 		map: map,
+		animation: google.maps.Animation.DROP,
 		title: "title"
 	});
 }
@@ -103,7 +104,7 @@ var AppViewModel = function(){
 var appViewModel = new AppViewModel();
 
 // activate knockout apply binding
-ko.applyBindings(new appViewModel());
+ko.applyBindings(appViewModel);
 
 
 // VIEW //

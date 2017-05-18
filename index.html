@@ -36,13 +36,16 @@
 <body>
 
 <!-- http://knockoutjs.com/documentation/foreach-binding.html USE FOR LIST VIEW -->
-	<h1>Neighborhood Map</h1>
-		<ul data-bind="foreach: locations">
-			<li><p data-bind="text: title"></li>
-		</ul>
+	<div class="bar">
+		<h1>Neighborhood Map</h1>
+			<input type="search">
+			<ul data-bind="foreach: locations">
+				<li><p data-bind="text: title"></p></li>
+			</ul>
+	</div>
 			<div id="map" class="map"></div>
 	
-	<!-- <input type="search" data-bind="textInput: userSearch"> -->
+	
 
 	<!-- JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
