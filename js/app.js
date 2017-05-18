@@ -1,21 +1,21 @@
 // hard-coded locations array of at least 5 location objects
 var locations = [
 	{
-		title: 'Park Ave Penthouse',
+		title: 'Street Food, Causeway Bay',
 		location:
-		{lat: 40.7713024, lng: -73.9632393}
+		{lat: 22.27879, lng: 114.18271}
 	},
 	{
-		title: 'Chelsea Loft',
-		location: {lat: 40.7444883, lng: -73.9949465}
+		title: 'Avenue of Stars, Tsim Sha Tsui',
+		location: {lat: 22.29303, lng: 114.17391}
 	},
 	{
-		title: 'Union Square Open Floor Plan',
-		location: {lat: 40.7347062, lng: -73.9895759}
+		title: 'Lan Kwai Fong, Central',
+		location: {lat: 22.275248899, lng: 114.153316053}
 	},
 	{
-		title: 'East Village Hip Studio',
-		location: {lat: 40.7281777, lng: -73.984377}
+		title: 'City University of Hong Kong, Kowloon Tong',
+		location: {lat: 22.33749, lng: 114.17200}
 	},
 	{
 		title: 'TriBeCa Artsy Bachelor Pad',
@@ -27,27 +27,35 @@ var locations = [
 	}
 ];
 
-// initMap function
-// Create a map variable
+
+// create a map variable that will be used in initMap()
 var map;
 
 // create array for listing markers in map
 var markers = [];
 
-// Complete the following function to initialize the map
+// initialize map
 function initMap() {
-	var myLatLng = {lat: 40.7713024, lng: -73.9532325};
-	// Create a map object and specify the DOM element for display.
+	var myLatLng = {lat: 22.285978, lng: 114.191490};
+	// create a map object and get map from DOM for display
 	map = new google.maps.Map(document.getElementById("map"), {
 	center: myLatLng,
 	zoom: 13
 });
-	var marker = new google.maps.Marker({
-		position: myLatLng,
+	// iterates through all locations and drop pins on every single location
+	for (j = 0; j < locations.length; j++){
+		var title = locations[j].title;
+		var location = locations[j].location;
+		
+		var marker = new google.maps.Marker({
+		position: location,
 		map: map,
-		animation: google.maps.Animation.DROP,
-		title: "title"
-	});
+		title: title,
+		animation: google.maps.Animation.DROP
+		});
+	}
+	// pushes all locations into markers array
+	markers.push(marker)
 }
 
 // AJAX GET AND POST API
@@ -119,17 +127,4 @@ var AppView = function(){
 		self.myLocations.push(place);
 	}
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
