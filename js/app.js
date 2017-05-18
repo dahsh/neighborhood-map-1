@@ -1,7 +1,7 @@
 // hard-coded locations array of at least 5 location objects
 var locations = [
 	{
-		title: 'Street Food, Causeway Bay',
+		title: 'Causeway Bay Street Food',
 		location:
 		{lat: 22.27879, lng: 114.18271}
 	},
@@ -18,12 +18,28 @@ var locations = [
 		location: {lat: 22.33749, lng: 114.17200}
 	},
 	{
-		title: 'TriBeCa Artsy Bachelor Pad',
-		location: {lat: 40.7195264, lng: -74.0089934}
+		title: 'Tsim Sha Tsui Nightlife',
+		location: {lat: 22.30109, lng: 114.17334}
 	},
 	{
-		title: 'Chinatown Homey Space',
-		location: {lat: 40.7180628, lng: -73.9961237}
+		title: 'Ladies Market, Mong Kok',
+		location: {lat: 22.31937, lng: 114.17055}
+	},
+	{
+		title: 'Currency Exchange, Sheung Wan',
+		location: {lat: 22.28693, lng: 114.15126}
+	},
+	{
+		title: 'Wan Chai Nightlife',
+		location: {lat: 22.27713, lng: 114.17155}
+	},
+	{
+		title: 'Happy Valley Racecourse',
+		location: {lat: 22.26835, lng: 114.18651}
+	},
+	{
+		title: 'The Peak',
+		location: {lat: 22.26325, lng: 114.15880}
 	}
 ];
 

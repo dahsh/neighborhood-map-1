@@ -29,16 +29,16 @@
 	<link href="css/main.css" rel="stylesheet">
 	
 	<!-- TITLE -->
-	<title>Neighborhood Map</title>
+	<title>My Favorite Places in Hong Kong</title>
 
 </head>
 
 <body>
 
 <!-- http://knockoutjs.com/documentation/foreach-binding.html USE FOR LIST VIEW -->
-	<div class="bar">
-		<h1>Neighborhood Map</h1>
-			<input type="search">
+	<div class="nav-bar col-md-3">
+		<h2 class="main-title">Places You Should Visit in Hong Kong</h2>
+			<input type="search" id="search-input" placeholder="filter location here...">
 			<ul data-bind="foreach: locations">
 				<li><p data-bind="text: title"></p></li>
 			</ul>
