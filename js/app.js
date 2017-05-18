@@ -1,3 +1,32 @@
+// hard-coded locations array of at least 5 location objects
+var locations = [
+	{
+		title: 'Park Ave Penthouse',
+		location:
+		{lat: 40.7713024, lng: -73.9632393}
+	},
+	{
+		title: 'Chelsea Loft',
+		location: {lat: 40.7444883, lng: -73.9949465}
+	},
+	{
+		title: 'Union Square Open Floor Plan',
+		location: {lat: 40.7347062, lng: -73.9895759}
+	},
+	{
+		title: 'East Village Hip Studio',
+		location: {lat: 40.7281777, lng: -73.984377}
+	},
+	{
+		title: 'TriBeCa Artsy Bachelor Pad',
+		location: {lat: 40.7195264, lng: -74.0089934}
+	},
+	{
+		title: 'Chinatown Homey Space',
+		location: {lat: 40.7180628, lng: -73.9961237}
+	}
+];
+
 // initMap function
 // Create a map variable
 var map;
@@ -54,15 +83,7 @@ function initMap() {
 // MODEL //
 
 var AppModel = function(){
-	// hard-coded locations array of at least 5 location objects
-	var locations = [
-		{title: 'Park Ave Penthouse', location: {lat: 40.7713024, lng: -73.9632393}},
-		{title: 'Chelsea Loft', location: {lat: 40.7444883, lng: -73.9949465}},
-		{title: 'Union Square Open Floor Plan', location: {lat: 40.7347062, lng: -73.9895759}},
-		{title: 'East Village Hip Studio', location: {lat: 40.7281777, lng: -73.984377}},
-		{title: 'TriBeCa Artsy Bachelor Pad', location: {lat: 40.7195264, lng: -74.0089934}},
-		{title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
-	];
+	var self = this;
 };
 
 // Location constructor (similar to Cat constructor function)
@@ -73,20 +94,41 @@ var AppModel = function(){
 var AppViewModel = function(){
 	var self = this;
 // define Location observable array ()
-	// this.location = ko.observableArray([]);
+	self.myLocations = ko.observableArray();
 // https://classroom.udacity.com/nanodegrees/nd001/parts/e87c34bf-a9c0-415f-b007-c2c2d7eead73/modules/271165859175461/lessons/3406489055/concepts/34648186930923
 
 };
 
 // instantiate the ViewModel using the new operator and apply the bindings (aka activate KO)
-var AppViewModel = new AppViewModel();
+var appViewModel = new AppViewModel();
 
 // activate knockout apply binding
-// ko.applyBindings(new AppViewModel());
+ko.applyBindings(new appViewModel());
 
 
 // VIEW //
 
 var AppView = function(){
+	var self = this;
 
+	self.myLocations = ko.observableArray();
+
+	for (i = 0; i < locations.length; i++) {
+		var place = new AppModel(locations[i]);
+		self.myLocations.push(place);
+	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
