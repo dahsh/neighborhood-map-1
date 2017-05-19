@@ -1,47 +1,90 @@
+var appViewModel;
+
 // hard-coded locations array of at least 5 location objects
 var locations = [
 	{
-		title: 'Causeway Bay Street Food',
-		location:
-		{lat: 22.27879, lng: 114.18271}
+		title: 'Tim Ho Wan',
+		location: {lat: 22.32891, lng: 114.16641}
 	},
 	{
-		title: 'Avenue of Stars, Tsim Sha Tsui',
-		location: {lat: 22.29303, lng: 114.17391}
+		title: 'One Dim Sum',
+		location: {lat: 22.32531, lng: 114.16905}
 	},
 	{
-		title: 'Lan Kwai Fong, Central',
+		title: 'Ramen Champion',
+		location: {lat: 22.30432, lng: 114.17198}
+	},
+	{
+		title: 'Lan Kwai Fong',
 		location: {lat: 22.275248899, lng: 114.153316053}
-	},
-	{
-		title: 'City University of Hong Kong, Kowloon Tong',
-		location: {lat: 22.33749, lng: 114.17200}
 	},
 	{
 		title: 'Tsim Sha Tsui Nightlife',
 		location: {lat: 22.30109, lng: 114.17334}
 	},
 	{
-		title: 'Ladies Market, Mong Kok',
-		location: {lat: 22.31937, lng: 114.17055}
-	},
-	{
-		title: 'Currency Exchange, Sheung Wan',
-		location: {lat: 22.28693, lng: 114.15126}
+		title: 'Ozone Bar Rooftop',
+		location: {lat: 22.30496, lng: 114.16159}
 	},
 	{
 		title: 'Wan Chai Nightlife',
 		location: {lat: 22.27713, lng: 114.17155}
 	},
 	{
+		title: 'Time Square',
+		location:
+		{lat: 22.27879, lng: 114.18271}
+	},
+	{
+		title: 'Avenue of Stars',
+		location: {lat: 22.29303, lng: 114.17391}
+	},
+	{
+		title: 'Currency Exchange',
+		location: {lat: 22.28693, lng: 114.15126}
+	},
+	{
 		title: 'Happy Valley Racecourse',
 		location: {lat: 22.26835, lng: 114.18651}
 	},
 	{
+		title: 'Ladies Market',
+		location: {lat: 22.31937, lng: 114.17055}
+	},
+	{
+		title: 'City University of Hong Kong',
+		location: {lat: 22.33749, lng: 114.17200}
+	},
+	{
+		title: 'Festival Walk Mall',
+		location: {lat: 22.33771, lng: 114.17409}
+	},
+	{
+		title: 'Soccer Field',
+		location: {lat: 22.33787, lng: 114.18267}
+	},
+	{
+		title: 'Lion Rock - Hiking',
+		location: {lat: 22.35227, lng: 114.18704}
+	},
+	{
+		title: '10,000 Buddhas Monastery',
+		location: {lat: 22.38737, lng: 114.18484}
+	},
+	{
 		title: 'The Peak',
 		location: {lat: 22.26325, lng: 114.15880}
-	}
+	},
+	{
+		title: 'Stanley Market',
+		location: {lat: 22.21918, lng: 114.21221}
+	},
+	{
+		title: 'Hong Kong International Airport',
+		location: {lat: 22.31732, lng: 113.93664}
+	}	
 ];
+
 
 
 // create a map variable that will be used in initMap()
@@ -69,9 +112,12 @@ function initMap() {
 		title: title,
 		animation: google.maps.Animation.DROP
 		});
+		markers.push(marker)
+		appViewModel.myLocations()[j].marker = marker;
+
+		// attach a click event listener to the marker objects and open an info window on click
 	}
 	// pushes all locations into markers array
-	markers.push(marker)
 }
 
 // AJAX GET AND POST API
@@ -105,42 +151,44 @@ function initMap() {
 // 	})
 // });
 
-// MODEL //
+function getMyData(data) {
 
-var AppModel = function(){
+   // ajax request
+
+   // push data from response object in callback function to data observableArray
+    
+}
+
+// Location Constructor
+
+var Location = function(data){
 	var self = this;
+	this.title = data.title;
+	this.location = data.location;
+	this.isVisible = ko.observable(true);
 };
-
-// Location constructor (similar to Cat constructor function)
-
 
 // VIEW MODEL //
 
 var AppViewModel = function(){
 	var self = this;
-// define Location observable array ()
-	self.myLocations = ko.observableArray();
+	// define Location observable array ()
+	this.myLocations = ko.observableArray();
+
+	for (i = 0; i < locations.length; i++) {
+		var place = new Location(locations[i]);
+		self.myLocations.push(place);
+	}
+
+    // If you want to get the data for all locations on initial page load
+    // getMyData(self.myLocations)
+
 // https://classroom.udacity.com/nanodegrees/nd001/parts/e87c34bf-a9c0-415f-b007-c2c2d7eead73/modules/271165859175461/lessons/3406489055/concepts/34648186930923
 
 };
 
 // instantiate the ViewModel using the new operator and apply the bindings (aka activate KO)
-var appViewModel = new AppViewModel();
+appViewModel = new AppViewModel();
 
 // activate knockout apply binding
 ko.applyBindings(appViewModel);
-
-
-// VIEW //
-
-var AppView = function(){
-	var self = this;
-
-	self.myLocations = ko.observableArray();
-
-	for (i = 0; i < locations.length; i++) {
-		var place = new AppModel(locations[i]);
-		self.myLocations.push(place);
-	}
-};
-
