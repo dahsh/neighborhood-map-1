@@ -67,7 +67,7 @@ var locations = [
 		location: {lat: 22.33771, lng: 114.17409}
 	},
 	{
-		title: 'Soccer Field',
+		title: 'Soccer Field @ HK Baptist University',
 		location: {lat: 22.33787, lng: 114.18267}
 	},
 	{
@@ -141,7 +141,7 @@ function initMap() {
 			infowindow.marker = marker;
 			infowindow.setContent('<div class="title">' + marker.title + '</div>');
 			marker.setAnimation(google.maps.Animation.BOUNCE);
-    		setTimeout(function(){ marker.setAnimation(null); }, 1400);
+    		setTimeout(function(){ marker.setAnimation(null); }, 1430);
 			infowindow.open(map, marker);
 			// Make sure the marker property is cleared if the infowindow is closed.
 			infowindow.addListener('closeclick',function(){
