@@ -101,6 +101,10 @@ function initMap() {
 	center: myLatLng,
 	zoom: 13
 });
+	// attach a click event listener to the marker objects and open an info window on click
+	
+    var infoWindow = new google.maps.InfoWindow();
+
 	// iterates through all locations and drop pins on every single location
 	for (j = 0; j < locations.length; j++){
 		var title = locations[j].title;
@@ -112,13 +116,34 @@ function initMap() {
 		title: title,
 		animation: google.maps.Animation.DROP
 		});
+		// pushes all locations into markers array
 		markers.push(marker)
 		appViewModel.myLocations()[j].marker = marker;
 
-		// attach a click event listener to the marker objects and open an info window on click
-	}
-	// pushes all locations into markers array
+		// Create an onclick event to open an infowindow at each marker.
+		marker.addListener('click', function() {
+			populateInfoWindow(this, infoWindow);
+		});
+	
+	// This function populates the infowindow when the marker is clicked. We'll only allow
+	// one infowindow which will open at the marker that is clicked, and populate based
+	// on that markers position.
+	function populateInfoWindow(marker, infowindow) {
+		// Check to make sure the infowindow is not already opened on this marker.
+		if (infowindow.marker != marker) {
+			infowindow.marker = marker;
+			infowindow.setContent('<div class="title">' + marker.title + '</div>');
+			infowindow.open(map, marker);
+			// Make sure the marker property is cleared if the infowindow is closed.
+			infowindow.addListener('closeclick',function(){
+	    	infowindow.setMarker = null;
+	  		});
+		}
+	} // end of populateInfoWindow
+	} // end of for loop through markers [j]
 }
+      
+
 
 // AJAX GET AND POST API
 
