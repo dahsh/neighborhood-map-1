@@ -8,7 +8,7 @@ var locations = [
 	},
 	{
 		title: 'One Dim Sum',
-		location: {lat: 22.32531, lng: 114.16905}
+		location: {lat: 22.32548, lng: 114.16941}
 	},
 	{
 		title: 'Ramen Champion',
@@ -16,7 +16,7 @@ var locations = [
 	},
 	{
 		title: 'Lan Kwai Fong',
-		location: {lat: 22.275248899, lng: 114.153316053}
+		location: {lat: 22.28084, lng: 114.15567}
 	},
 	{
 		title: 'Tsim Sha Tsui Nightlife',
@@ -32,12 +32,19 @@ var locations = [
 	},
 	{
 		title: 'Time Square',
-		location:
-		{lat: 22.27879, lng: 114.18271}
+		location: {lat: 22.27879, lng: 114.18271}
+	},
+	{
+		title: 'IFC Tower',
+		location: {lat: 22.28490, lng: 114.15892}
 	},
 	{
 		title: 'Avenue of Stars',
 		location: {lat: 22.29303, lng: 114.17391}
+	},
+	{
+		title: 'Star Ferry',
+		location: {lat: 22.29522, lng: 114.16724}
 	},
 	{
 		title: 'Currency Exchange',
@@ -45,7 +52,7 @@ var locations = [
 	},
 	{
 		title: 'Happy Valley Racecourse',
-		location: {lat: 22.26835, lng: 114.18651}
+		location: {lat: 22.27225, lng: 114.18096}
 	},
 	{
 		title: 'Ladies Market',
@@ -73,7 +80,7 @@ var locations = [
 	},
 	{
 		title: 'The Peak',
-		location: {lat: 22.26325, lng: 114.15880}
+		location: {lat: 22.27588, lng: 114.14553}
 	},
 	{
 		title: 'Stanley Market',
@@ -133,6 +140,8 @@ function initMap() {
 		if (infowindow.marker != marker) {
 			infowindow.marker = marker;
 			infowindow.setContent('<div class="title">' + marker.title + '</div>');
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+    		setTimeout(function(){ marker.setAnimation(null); }, 1400);
 			infowindow.open(map, marker);
 			// Make sure the marker property is cleared if the infowindow is closed.
 			infowindow.addListener('closeclick',function(){
