@@ -183,6 +183,12 @@ var locations = [
 // 	},
 // ];
 
+
+// foursquare client-id and client-secret
+
+var client_id = "FZPMCSEYO134W0XYREE1QGP5TE4OXP2Z4QXCNAATK3MKIME0";
+var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
+
 // create a map variable that will be used in initMap()
 var map;
 
@@ -251,6 +257,11 @@ function initMap() {
 			url: foursquareUrl,
 			success: function(data){
 				console.log(data);
+				infowindow.setContent("<div>" + "Name: " + foursquareVenueName + "</div>" +
+					"<div>" + "Name: " + foursquareVenueHours + "</div>" +
+					"<div>" + "Name: " + foursquareVenueCategory + "</div>" +
+					"<div>" + "Name: " + foursquareVenueAddress + "</div>" +)
+				infoWindow.open(map,marker);
 			},
 			error: function(){
 				console.log("It's taking longer than expected to retrieve data from foursquare. Please try again.");
@@ -259,29 +270,8 @@ function initMap() {
 
 	} // end of for loop through markers [j]
 }
-      
-// AJAX GET AND POST API
-	
-// 	$.ajax({
-// 		type: 'POST',
-// 		url: '',
-// 		success: function(data){
-
-// 		},
-// 		error: function(){
-// 			console.log("post error");
-// 		}
-// 	})
-// });
-
-// foursquare client-id and client-secret
-
-var client_id = "FZPMCSEYO134W0XYREE1QGP5TE4OXP2Z4QXCNAATK3MKIME0";
-var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
-
 
 function getMyData(data) {
-
 
    // push data from response object in callback function to data observableArray
     
@@ -308,6 +298,11 @@ var AppViewModel = function(){
 		self.myLocations.push(place);
 	}
 
+	// this.search = ko.computed(function(){
+	// 	return ko.utils.arrayFilter(self.places(), function(place){
+	// 		return place.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
+	// 	})
+	// });
     // If you want to get the data for all locations on initial page load
     // getMyData(self.myLocations)
 
