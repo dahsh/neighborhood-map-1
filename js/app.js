@@ -152,26 +152,8 @@ function initMap() {
 	} // end of for loop through markers [j]
 }
       
-
-
 // AJAX GET AND POST API
 
-// $(function(){
-
-// 	var $items = $('#items');
-
-// 	$.ajax({
-// 		type: 'GET',
-// 		url: '',
-// 		success: function(data){
-// 			$.each(data, function(i, items){
-// 				$items.append('<li>item1: ' + items.something +', item2: ' + items.something + '</li>');
-// 			});
-// 		},
-//		error: function(){
-//			console.log("get error")
-//		}
-// 	});
 	
 // 	$.ajax({
 // 		type: 'POST',
@@ -185,9 +167,31 @@ function initMap() {
 // 	})
 // });
 
+// foursquare client-id and client-secret
+
+var client_id = "FZPMCSEYO134W0XYREE1QGP5TE4OXP2Z4QXCNAATK3MKIME0";
+var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
+
+
 function getMyData(data) {
 
    // ajax request
+   var foursquareUrl = "https://api.foursquare.com/v2/venues";
+   var foursquareVenueName = "";
+   var foursquareVenueAddress = "";
+   var foursquareVenueCategory = "";
+   var foursquareVenueHours = "";
+
+	$.ajax({
+		type: 'GET',
+		url: foursquareUrl,
+		success: function(data){
+			console.log(data);
+		},
+		error: function(){
+			alert("It's taking longer than expected to retrieve data from foursquare. Please try again.");
+		}
+	});
 
    // push data from response object in callback function to data observableArray
     
