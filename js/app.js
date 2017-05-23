@@ -92,7 +92,96 @@ var locations = [
 	}	
 ];
 
-
+// var locationSF = [
+// 	{
+// 		title: 'Golden Gate Bridge',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Golden Gate Park',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Baker Beach',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Ocean Beach',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Twin Peaks',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Dolores Park',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Fort Mason',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Palace of Fine Arts',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'San Francisco State University',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'ATT Park',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Lake Merced',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Mission District',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'California Academy of Science',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Pier 39',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Ferry Building',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'House of Air',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Painted Ladies',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Lands End Trail',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'El Techo Rooftop',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Corona Heights Park',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Coit Tower',
+// 		location: {lat: , lng:}
+// 	},
+// 	{
+// 		title: 'Lombard Street',
+// 		location: {lat: , lng:}
+// 	},
+// ];
 
 // create a map variable that will be used in initMap()
 var map;
@@ -149,11 +238,29 @@ function initMap() {
 	  		});
 		}
 	} // end of populateInfoWindow
+
+		// ajax request
+		var foursquareUrl = "https://api.foursquare.com/v2/venues" + marker.position.lat() + "," + marker.position.lng() + "&client_id=" + client_id + "&client_secret=" + client_secret;
+		var foursquareVenueName = "";
+		var foursquareVenueAddress = "";
+		var foursquareVenueCategory = "";
+		var foursquareVenueHours = "";
+
+		$.ajax({
+			type: 'GET',
+			url: foursquareUrl,
+			success: function(data){
+				console.log(data);
+			},
+			error: function(){
+				console.log("It's taking longer than expected to retrieve data from foursquare. Please try again.");
+			}
+		});
+
 	} // end of for loop through markers [j]
 }
       
 // AJAX GET AND POST API
-
 	
 // 	$.ajax({
 // 		type: 'POST',
@@ -175,23 +282,6 @@ var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
 
 function getMyData(data) {
 
-   // ajax request
-   var foursquareUrl = "https://api.foursquare.com/v2/venues";
-   var foursquareVenueName = "";
-   var foursquareVenueAddress = "";
-   var foursquareVenueCategory = "";
-   var foursquareVenueHours = "";
-
-	$.ajax({
-		type: 'GET',
-		url: foursquareUrl,
-		success: function(data){
-			console.log(data);
-		},
-		error: function(){
-			alert("It's taking longer than expected to retrieve data from foursquare. Please try again.");
-		}
-	});
 
    // push data from response object in callback function to data observableArray
     
