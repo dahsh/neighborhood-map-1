@@ -183,12 +183,6 @@ var locations = [
 // 	},
 // ];
 
-
-// foursquare client-id and client-secret
-
-var client_id = "FZPMCSEYO134W0XYREE1QGP5TE4OXP2Z4QXCNAATK3MKIME0";
-var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
-
 // create a map variable that will be used in initMap()
 var map;
 
@@ -213,10 +207,11 @@ function initMap() {
 		var location = locations[j].location;
 		
 		var marker = new google.maps.Marker({
-		position: location,
-		map: map,
-		title: title,
-		animation: google.maps.Animation.DROP
+			position: location,
+			map: map,
+			title: title,
+			animation: google.maps.Animation.DROP,
+			id: i
 		});
 		// pushes all locations into markers array
 		markers.push(marker)
@@ -246,21 +241,39 @@ function initMap() {
 	} // end of populateInfoWindow
 
 		// ajax request
-		var foursquareUrl = "https://api.foursquare.com/v2/venues" + marker.position.lat() + "," + marker.position.lng() + "&client_id=" + client_id + "&client_secret=" + client_secret;
-		var foursquareVenueName = "";
-		var foursquareVenueAddress = "";
-		var foursquareVenueCategory = "";
-		var foursquareVenueHours = "";
 
+		// foursquare client-id and client-secret
+
+		var client_id = "FZPMCSEYO134W0XYREE1QGP5TE4OXP2Z4QXCNAATK3MKIME0";
+		var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
+
+		var foursquareUrl = "https://api.foursquare.com/v2/venues/search";// + marker.position.lat() + "," + marker.position.lng();
+		
 		$.ajax({
-			type: 'GET',
+		//	type: 'GET',
 			url: foursquareUrl,
+			dataType: "json",
+			data : {
+				client_id: client_id,
+				client_secret: client_secret,
+				query: "restaurant",
+				near: "San Francisco",
+				v: 20170523
+			},
 			success: function(data){
 				console.log(data);
-				infowindow.setContent("<div>" + "Name: " + foursquareVenueName + "</div>" +
-					"<div>" + "Name: " + foursquareVenueHours + "</div>" +
-					"<div>" + "Name: " + foursquareVenueCategory + "</div>" +
-					"<div>" + "Name: " + foursquareVenueAddress + "</div>" +)
+					
+					var foursquareVenue = data.response.venues[0];
+					var foursquareVenueName = foursquareVenue.name;
+					var foursquareVenueAddress = foursquareVenue.location.formattedAddress[0];
+					var foursquareVenueCategory = "";
+					var foursquareVenueHours = foursquareVenue.location.address;
+					var foursquareUrlId = "https://foursquare.com/v/" + foursquareVenue.id;
+
+					infoWindow.setContent("<div>" + "Name: " + "<a href='" + foursquareVenue + "'>" + foursquareVenueName + "</a></div>" +
+					"<div>" + "Hours: " + "<a href='" + foursquareVenueHours + "'>" + foursquareVenueHours + "</a></div>" +
+					"<div>" + "Catergory: " + "<a href='" + foursquareVenueHours + "'>" + foursquareVenueCategory + "</a></div>");
+					// "<div>" + "Name: " + foursquareVenueAddress + "</div>");
 				infoWindow.open(map,marker);
 			},
 			error: function(){
