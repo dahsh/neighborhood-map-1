@@ -48,3 +48,8 @@ html, body {
 .title {
 	color: black;
 }
+
+.name, .category, .address {
+	color: #000;
+	font-weight: bold;
+}

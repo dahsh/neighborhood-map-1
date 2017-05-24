@@ -1,6 +1,6 @@
 var appViewModel;
 
-// hard-coded locations array of at least 5 location objects
+// array of locations in Hong Kong
 var locations = [
 	{
 		title: 'Tim Ho Wan',
@@ -92,6 +92,7 @@ var locations = [
 	}	
 ];
 
+// array of locations in San Francisco
 // var locationSF = [
 // 	{
 // 		title: 'Golden Gate Bridge',
@@ -191,6 +192,7 @@ var markers = [];
 
 // initialize map
 function initMap() {
+	// intial map view when loaded
 	var myLatLng = {lat: 22.285978, lng: 114.191490};
 	// create a map object and get map from DOM for display
 	map = new google.maps.Map(document.getElementById("map"), {
@@ -198,14 +200,16 @@ function initMap() {
 	zoom: 13
 });
 	// attach a click event listener to the marker objects and open an info window on click
-	
+	// creates infowindow for each place pin
     var infoWindow = new google.maps.InfoWindow();
 
 	// iterates through all locations and drop pins on every single location
 	for (j = 0; j < locations.length; j++){
+		// store title and location iteration in variables
 		var title = locations[j].title;
 		var location = locations[j].location;
 		
+		// drop marker after looping
 		var marker = new google.maps.Marker({
 			position: location,
 			map: map,
@@ -219,36 +223,40 @@ function initMap() {
 
 		// Create an onclick event to open an infowindow at each marker.
 		marker.addListener('click', function() {
+			// show info inside infowindow when clicked
 			populateInfoWindow(this, infoWindow);
+			// displays all data retrieved from foursquare api down below
+			infoWindow.setContent(contentString);
 		});
 	
 	// This function populates the infowindow when the marker is clicked. We'll only allow
 	// one infowindow which will open at the marker that is clicked, and populate based
 	// on that markers position.
-	function populateInfoWindow(marker, infowindow) {
+	function populateInfoWindow(marker, infoWindow) {
 		// Check to make sure the infowindow is not already opened on this marker.
-		if (infowindow.marker != marker) {
-			infowindow.marker = marker;
-			infowindow.setContent('<div class="title">' + marker.title + '</div>');
+		if (infoWindow.marker != marker) {
+			infoWindow.marker = marker;
+			infoWindow.setContent('<div class="title">' + marker.title + '</div>');
 			marker.setAnimation(google.maps.Animation.BOUNCE);
-    		setTimeout(function(){ marker.setAnimation(null); }, 1430);
-			infowindow.open(map, marker);
+    		setTimeout(function(){ marker.setAnimation(null); }, 2130);
+			infoWindow.open(map, marker);
 			// Make sure the marker property is cleared if the infowindow is closed.
-			infowindow.addListener('closeclick',function(){
-	    	infowindow.setMarker = null;
+			infoWindow.addListener('closeclick',function(){
+	    	infoWindow.setMarker = null;
 	  		});
 		}
 	} // end of populateInfoWindow
 
-		// ajax request
-
 		// foursquare client-id and client-secret
-
 		var client_id = "FZPMCSEYO134W0XYREE1QGP5TE4OXP2Z4QXCNAATK3MKIME0";
 		var client_secret = "YGNCPSLBHXFWEFRWR3E3I4JUV3YHMKT0J3I53GDNTAVOUTXM";
 
+		// foursquare api url
 		var foursquareUrl = "https://api.foursquare.com/v2/venues/search";// + marker.position.lat() + "," + marker.position.lng();
+		// creating variables outside of the for ajax request for faster loading
+		var venue, name, address, category, foursquareId, contentString;
 		
+		// ajax request
 		$.ajax({
 		//	type: 'GET',
 			url: foursquareUrl,
@@ -257,23 +265,33 @@ function initMap() {
 				client_id: client_id,
 				client_secret: client_secret,
 				query: "restaurant",
-				near: "San Francisco",
+				near: "Hong Kong",
 				v: 20170523
 			},
 			success: function(data){
 				console.log(data);
-					
-					var foursquareVenue = data.response.venues[0];
-					var foursquareVenueName = foursquareVenue.name;
-					var foursquareVenueAddress = foursquareVenue.location.formattedAddress[0];
-					var foursquareVenueCategory = "";
-					var foursquareVenueHours = foursquareVenue.location.address;
-					var foursquareUrlId = "https://foursquare.com/v/" + foursquareVenue.id;
+					// get venue info
+					venue = data.response.venues[0];
+					console.log(venue);
+					// get venue name info
+					name = venue.name;
+					console.log(name);
+					// get venue address info
+					address = venue.location.formattedAddress[0];
+					console.log(address);
+					// get venue category info
+					category = venue.categories[0].name;
+					console.log(category);
+					// get venue location address info
+					address = venue.location.address;
+					console.log(address);
 
-					infoWindow.setContent("<div>" + "Name: " + "<a href='" + foursquareVenue + "'>" + foursquareVenueName + "</a></div>" +
-					"<div>" + "Hours: " + "<a href='" + foursquareVenueHours + "'>" + foursquareVenueHours + "</a></div>" +
-					"<div>" + "Catergory: " + "<a href='" + foursquareVenueHours + "'>" + foursquareVenueCategory + "</a></div>");
-					// "<div>" + "Name: " + foursquareVenueAddress + "</div>");
+					foursquareId = "https://foursquare.com/v/" + venue.id;
+					console.log(foursquareId);
+
+					contentString = "<div class='name'>" + "Name: " + "<a href='" + venue + "'>" + name + "</a></div>" +
+					"<div class='category'>" + "Catergory: " + "<a href='" + category + "'>" + category + "</a></div>" +
+					"<div class='address'>" + "Address: " + address + "</div>";
 				infoWindow.open(map,marker);
 			},
 			error: function(){
