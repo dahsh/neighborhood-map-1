@@ -264,7 +264,7 @@ function initMap() {
 			data : {
 				client_id: client_id,
 				client_secret: client_secret,
-				query: "restaurant",
+				query: title,
 				near: "Hong Kong",
 				v: 20170523
 			},
