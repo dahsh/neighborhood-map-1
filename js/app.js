@@ -205,6 +205,7 @@ function initMap() {
 
 	// iterates through all locations and drop pins on every single location
 	for (j = 0; j < locations.length; j++){
+		(function(){
 		// store title and location iteration in variables
 		var title = locations[j].title;
 		var location = locations[j].location;
@@ -237,7 +238,7 @@ function initMap() {
 		// Check to make sure the infowindow is not already opened on this marker.
 		if (infoWindow.marker != marker) {
 			infoWindow.marker = marker;
-			infoWindow.setContent('<div class="title">' + marker.title + '</div>');
+			infoWindow.setContent('<div class="title">' + marker.title + '</div>' + marker.contentString);
 			marker.setAnimation(google.maps.Animation.BOUNCE);
     		setTimeout(function(){ marker.setAnimation(null); }, 2130);
 			infoWindow.open(map, marker);
@@ -270,35 +271,36 @@ function initMap() {
 				v: 20170523
 			},
 			success: function(data){
-				console.log(data);
+				// console.log(data);
 					// get venue info
 					venue = data.response.venues[0];
-					console.log(venue);
+					// console.log(venue);
 					// get venue name info
 					name = venue.name;
-					console.log(name);
+					// console.log(name);
 					// get venue address info
 					address = venue.location.formattedAddress[0];
-					console.log(address);
+					// console.log(address);
 					// get venue category info
 					category = venue.categories[0].name;
-					console.log(category);
+					// console.log(category);
 					// get venue location address info
 					address = venue.location.address;
-					console.log(address);
+					// console.log(address);
 
 					foursquareId = "https://foursquare.com/v/" + venue.id;
-					console.log(foursquareId);
+					// console.log(foursquareId);
 
 					contentString = "<div class='name'>" + "Name: " + "<a href='" + venue + "'>" + name + "</a></div>" +
 					"<div class='category'>" + "Catergory: " + "<a href='" + category + "'>" + category + "</a></div>" +
 					"<div class='address'>" + "Address: " + address + "</div>";
-				infoWindow.open(map,marker);
 			},
 			error: function(){
 				console.log("It's taking longer than expected to retrieve data from foursquare. Please try again.");
 			}
 		});
+
+		})(j);
 
 	} // end of for loop through markers [j]
 }
