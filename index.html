@@ -34,11 +34,11 @@
 </head>
 
 <body>
-<!-- data-bind="textInput: query, keyup: filter" -->
+
 <!-- http://knockoutjs.com/documentation/foreach-binding.html USE FOR LIST VIEW -->
 	<div class="nav-bar col-md-3">
 		<h2 class="main-title">My Hong Kong List</h2>
-			<input type="search" id="search-input" placeholder="filter location here...">
+			<input type="search" id="search-input" placeholder="filter location here..." data-bind="textInput: value">
 			<div>
 				<button class="btn btn-info hk">Hong Kong</button> <button class="btn btn-info sf">San Francisco</button>
 			</div>

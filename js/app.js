@@ -258,7 +258,7 @@ function initMap() {
 		// creating variables outside of the for ajax request for faster loading
 		var venue, name, address, category, foursquareId, contentString;
 		
-		// ajax request
+		// ajax request - foursquare api data (https://developer.foursquare.com/docs/)
 		$.ajax({
 		//	type: 'GET',
 			url: foursquareUrl,
@@ -291,9 +291,10 @@ function initMap() {
 					foursquareId = "https://foursquare.com/v/" + venue.id;
 					// console.log(foursquareId);
 
-					contentString = "<div class='name'>" + "Name: " + "<a href='" + venue + "'>" + name + "</a></div>" +
-					"<div class='category'>" + "Catergory: " + "<a href='" + category + "'>" + category + "</a></div>" +
-					"<div class='address'>" + "Address: " + address + "</div>";
+					contentString = "<div class='name'>" + "Name: " + title + "</div>" +
+					"<div class='category'>" + "Catergory: " + category + "</div>" +
+					"<div class='address'>" + "Address: " + address + "</div>" +
+					"<div class='information'>" + "More info: "  + "<a href='" + foursquareId + "'>" + "Click here" + "</a></div>";
 			},
 			error: function(){
 				console.log("It's taking longer than expected to retrieve data from foursquare. Please try again.");
@@ -326,17 +327,18 @@ var AppViewModel = function(){
 	var self = this;
 	// define Location observable array ()
 	this.myLocations = ko.observableArray();
+	// self.value = ko.observableArray();
 
 	for (i = 0; i < locations.length; i++) {
 		var place = new Location(locations[i]);
 		self.myLocations.push(place);
 	}
 
-	// this.search = ko.computed(function(){
-	// 	return ko.utils.arrayFilter(self.places(), function(place){
-	// 		return place.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
-	// 	})
-	// });
+	this.search = ko.computed(function(){
+		return ko.utils.arrayFilter(this.myLocations, function(places){
+			return places.title.toLowerCase().indexOf(self.value().toLowerCase()) >= 0;
+		});
+	});
     // If you want to get the data for all locations on initial page load
     // getMyData(self.myLocations)
 
