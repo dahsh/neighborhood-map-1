@@ -215,6 +215,7 @@ function initMap() {
 			map: map,
 			title: title,
 			animation: google.maps.Animation.DROP,
+			address: address,
 			id: i
 		});
 		// pushes all locations into markers array
@@ -264,7 +265,7 @@ function initMap() {
 			data : {
 				client_id: client_id,
 				client_secret: client_secret,
-				query: title,
+				query: marker.title,
 				near: "Hong Kong",
 				v: 20170523
 			},
