@@ -189,7 +189,7 @@ var map;
 
 // create array for listing markers in map
 var markers = [];
-
+var marker;
 // initialize map
 function initMap() {
 	// intial map view when loaded
@@ -295,6 +295,8 @@ function initMap() {
 					"<div class='category'>" + "Catergory: " + category + "</div>" +
 					"<div class='address'>" + "Address: " + address + "</div>" +
 					"<div class='information'>" + "More info: "  + "<a href='" + foursquareId + "'>" + "Click here" + "</a></div>";
+
+					marker.contentString;
 			},
 			error: function(){
 				console.log("It's taking longer than expected to retrieve data from foursquare. Please try again.");
@@ -326,19 +328,36 @@ var Location = function(data){
 var AppViewModel = function(){
 	var self = this;
 	// define Location observable array ()
-	this.myLocations = ko.observableArray();
-	// self.value = ko.observableArray();
-
+	self.myLocations = ko.observableArray();
+	self.filteredInput = ko.observable('');
+	
 	for (i = 0; i < locations.length; i++) {
 		var place = new Location(locations[i]);
 		self.myLocations.push(place);
 	}
 
-	this.search = ko.computed(function(){
-		return ko.utils.arrayFilter(this.myLocations, function(places){
-			return places.title.toLowerCase().indexOf(self.value().toLowerCase()) >= 0;
-		});
-	});
+    // self.searchFilter = ko.computed(function() {
+    //     return ko.utils.arrayFilter(self.myLocation, function(location) {
+    //         return location.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
+    //     });
+    // });
+
+	// self.searchFilter = ko.computed(function(){
+	// 	var userInput = self.filteredInput().toLowerCase();
+	// 	for (i = 0; i < self.myLocations().length; i++){
+	// 		if (self.myLocations()[i].title.toLowerCase().indexOf(userInput) >= 0){
+	// 			self.myLocations()[i].show(true);
+	// 			if (self.myLocations()[i].marker){
+	// 				self.myLocations()[i].marker.setVisible(true);
+	// 			}
+	// 		} else {
+	// 			self.myLocations()[i].show(false);
+	// 			if (self.myLocations()[i].marker){
+	// 				self.myLocations()[i].marker.setVisible(false);
+	// 			}
+	// 		}
+	// 	}
+	// });
     // If you want to get the data for all locations on initial page load
     // getMyData(self.myLocations)
 
