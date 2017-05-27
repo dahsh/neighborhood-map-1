@@ -335,29 +335,31 @@ var AppViewModel = function(){
 		var place = new Location(locations[i]);
 		self.myLocations.push(place);
 	}
+	
+	// from http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
+    // self.searchFilter = ko.computed(function(){
+    //     self.myLocations.removeAll();
 
-    // self.searchFilter = ko.computed(function() {
-    //     return ko.utils.arrayFilter(self.myLocation, function(location) {
-    //         return location.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
+    //     for (var x in self.myLocations){
+    //     	if (self.myLocations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0){
+    //     		self.myLocations.push(myLocations[x]);
+    //     	}
+    //     }
     //     });
-    // });
+    // };
 
-	// self.searchFilter = ko.computed(function(){
-	// 	var userInput = self.filteredInput().toLowerCase();
-	// 	for (i = 0; i < self.myLocations().length; i++){
-	// 		if (self.myLocations()[i].title.toLowerCase().indexOf(userInput) >= 0){
-	// 			self.myLocations()[i].show(true);
-	// 			if (self.myLocations()[i].marker){
-	// 				self.myLocations()[i].marker.setVisible(true);
-	// 			}
-	// 		} else {
-	// 			self.myLocations()[i].show(false);
-	// 			if (self.myLocations()[i].marker){
-	// 				self.myLocations()[i].marker.setVisible(false);
-	// 			}
-	// 		}
-	// 	}
-	// });
+	// from http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
+	self.searchFilter = ko.computed(function() {
+    	var filter = self.myLocations().toLowerCase();
+	    if (!filter) {
+	        return self.myLocations();
+	    } else {
+	        return ko.utils.arrayFilter(self.myLocations(), function(item) {
+	            return ko.utils.stringStartsWith(myLocations.name().toLowerCase(), filter);
+	        });
+    	}
+	});
+	
     // If you want to get the data for all locations on initial page load
     // getMyData(self.myLocations)
 
