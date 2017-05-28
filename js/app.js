@@ -344,6 +344,9 @@ var AppViewModel = function(){
     	}
 	});
 	
+	self.showLocation = function(locations){
+        google.maps.event.trigger(locations.marker, 'click');
+    };  
     // If you want to get the data for all locations on initial page load
     // getMyData(self.myLocations)
 
