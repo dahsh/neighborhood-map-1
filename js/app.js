@@ -96,92 +96,88 @@ var locations = [
 // var locationSF = [
 // 	{
 // 		title: 'Golden Gate Bridge',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80779, lng: -122.47520}
 // 	},
 // 	{
 // 		title: 'Golden Gate Park',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.77265, lng: -122.46023}
 // 	},
 // 	{
 // 		title: 'Baker Beach',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.79357, lng: -122.48364}
 // 	},
 // 	{
 // 		title: 'Ocean Beach',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.75890, lng: -122.51086}
 // 	},
 // 	{
 // 		title: 'Twin Peaks',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.75441, lng: -122.44768}
 // 	},
 // 	{
 // 		title: 'Dolores Park',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.75959, lng: -122.42702}
 // 	},
 // 	{
 // 		title: 'Fort Mason',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80679, lng: -122.43141}
 // 	},
 // 	{
 // 		title: 'Palace of Fine Arts',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80200, lng: -122.44865}
 // 	},
 // 	{
-// 		title: 'San Francisco State University',
-// 		location: {lat: , lng:}
-// 	},
-// 	{
-// 		title: 'ATT Park',
-// 		location: {lat: , lng:}
+// 		title: 'AT&T Park',
+// 		location: {lat: 37.77859, lng: -122.38927}
 // 	},
 // 	{
 // 		title: 'Lake Merced',
-// 		location: {lat: , lng:}
-// 	},
-// 	{
-// 		title: 'Mission District',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.72025, lng: -122.48516}
 // 	},
 // 	{
 // 		title: 'California Academy of Science',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.76987, lng: -122.46610}
 // 	},
 // 	{
 // 		title: 'Pier 39',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80838, lng: -122.41042}
 // 	},
 // 	{
 // 		title: 'Ferry Building',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.79528, lng: -122.39340}
 // 	},
 // 	{
 // 		title: 'House of Air',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80493, lng: -122.46882}
 // 	},
 // 	{
 // 		title: 'Painted Ladies',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.77626, lng: -122.43275}
 // 	},
 // 	{
 // 		title: 'Lands End Trail',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.78799, lng: -122.50589}
 // 	},
 // 	{
 // 		title: 'El Techo Rooftop',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.75669, lng: -122.41930}
 // 	},
 // 	{
 // 		title: 'Corona Heights Park',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.76517, lng: -122.43845}
 // 	},
 // 	{
 // 		title: 'Coit Tower',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80239, lng: -122.40582}
 // 	},
 // 	{
 // 		title: 'Lombard Street',
-// 		location: {lat: , lng:}
+// 		location: {lat: 37.80214, lng: -122.41874}
 // 	},
+//  {
+	// 	title: 'House of Pancakes',
+	// 	location: {lat: 37.74289, lng: -122.47635}
+//  }
 // ];
 
 // create a map variable that will be used in initMap()
@@ -189,7 +185,7 @@ var map;
 
 // create array for listing markers in map
 var markers = [];
-var marker;
+
 // initialize map
 function initMap() {
 	// intial map view when loaded
@@ -335,27 +331,15 @@ var AppViewModel = function(){
 		var place = new Location(locations[i]);
 		self.myLocations.push(place);
 	}
-	
-	// from http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
-    // self.searchFilter = ko.computed(function(){
-    //     self.myLocations.removeAll();
-
-    //     for (var x in self.myLocations){
-    //     	if (self.myLocations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0){
-    //     		self.myLocations.push(myLocations[x]);
-    //     	}
-    //     }
-    //     });
-    // };
 
 	// from http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
 	self.searchFilter = ko.computed(function() {
-    	var filter = self.myLocations().toLowerCase();
+    	var filter = self.filteredInput().toLowerCase();
 	    if (!filter) {
 	        return self.myLocations();
 	    } else {
 	        return ko.utils.arrayFilter(self.myLocations(), function(item) {
-	            return ko.utils.stringStartsWith(myLocations.name().toLowerCase(), filter);
+	            return item.title.toLowerCase().indexOf(filter) !== -1;
 	        });
     	}
 	});
