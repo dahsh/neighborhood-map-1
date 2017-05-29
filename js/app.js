@@ -1,7 +1,7 @@
 var appViewModel;
 
 // array of locations in Hong Kong
-var locations = [
+var locationsHK = [
 	{
 		title: 'Tim Ho Wan',
 		location: {lat: 22.32891, lng: 114.16641}
@@ -67,10 +67,6 @@ var locations = [
 		location: {lat: 22.33771, lng: 114.17409}
 	},
 	{
-		title: 'Soccer Field @ HK Baptist University',
-		location: {lat: 22.33787, lng: 114.18267}
-	},
-	{
 		title: 'Lion Rock - Hiking',
 		location: {lat: 22.35227, lng: 114.18704}
 	},
@@ -83,17 +79,13 @@ var locations = [
 		location: {lat: 22.27588, lng: 114.14553}
 	},
 	{
-		title: 'Stanley Market',
-		location: {lat: 22.21918, lng: 114.21221}
-	},
-	{
-		title: 'Hong Kong International Airport',
+		title: 'Hong Kong Airport (HKG)',
 		location: {lat: 22.31732, lng: 113.93664}
 	}	
 ];
 
 // array of locations in San Francisco
-var locationSF = [
+var locationsSF = [
 	{
 		title: 'Golden Gate Bridge',
 		location: {lat: 37.80779, lng: -122.47520}
@@ -105,10 +97,6 @@ var locationSF = [
 	{
 		title: 'Baker Beach',
 		location: {lat: 37.79357, lng: -122.48364}
-	},
-	{
-		title: 'Ocean Beach',
-		location: {lat: 37.75890, lng: -122.51086}
 	},
 	{
 		title: 'Twin Peaks',
@@ -189,7 +177,7 @@ var markers = [];
 // initialize map
 function initMap() {
 	// intial map view when loaded
-	var myLatLng = {lat: 22.285978, lng: 114.191490};
+	var myLatLng = {lat: 22.304978, lng: 114.191890};
 	// create a map object and get map from DOM for display
 	map = new google.maps.Map(document.getElementById("map"), {
 	center: myLatLng,
@@ -200,11 +188,11 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow();
 
 	// iterates through all locations and drop pins on every single location
-	for (j = 0; j < locations.length; j++){
+	for (j = 0; j < locationsHK.length; j++){
 		(function(){
 		// store title and location iteration in variables
-		var title = locations[j].title;
-		var location = locations[j].location;
+		var title = locationsHK[j].title;
+		var location = locationsHK[j].location;
 		
 		// drop marker after looping
 		var marker = new google.maps.Marker({
@@ -304,6 +292,14 @@ function initMap() {
 	} // end of for loop through markers [j]
 }
 
+// function selectList(){
+// 	if () {
+
+// 	} else if () {
+		
+// 	}
+// }
+
 // Location Constructor
 var Location = function(data){
 	var self = this;
@@ -319,8 +315,8 @@ var AppViewModel = function(){
 	self.myLocations = ko.observableArray();
 	self.filteredInput = ko.observable('');
 	
-	for (i = 0; i < locations.length; i++) {
-		var place = new Location(locations[i]);
+	for (i = 0; i < locationsHK.length; i++) {
+		var place = new Location(locationsHK[i]);
 		self.myLocations.push(place);
 	}
 

@@ -35,17 +35,33 @@
 
 <body>
 
-<!-- http://knockoutjs.com/documentation/foreach-binding.html USE FOR LIST VIEW -->
-	<div class="nav-bar col-md-3">
-		<h2 class="main-title">My Hong Kong List</h2>
-			<input type="search" id="search-input" placeholder="filter location here..." data-bind="textInput: filteredInput">
-			<div>
-				<button class="btn btn-info hk">Hong Kong</button> <button class="btn btn-info sf">San Francisco</button>
-			</div>
-			<ul data-bind="foreach: myLocations">
-				<li class="places" data-bind="text: title, click: $parent.showLocation,  visible: show"></li>
-			</ul>
-	</div>
+	<!-- http://knockoutjs.com/documentation/foreach-binding.html USE FOR LIST VIEW -->
+	<nav class="navbar navbar-default nav-bar col-sm-3 col-md-3">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+	    	<h2 class="main-title">* Visit This *</h2>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <input type="search" id="search-input" placeholder="filter your location here" data-bind="textInput: filteredInput">
+				<div class="buttons">
+					<button class="btn btn-primary" id="hk">Hong Kong</button> <button class="btn btn-primary" id="sf">San Francisco</button>
+				</div>
+				<ul class="places-list" data-bind="foreach: myLocations">
+					<p class="places" data-bind="text: title, click: $parent.showLocation,  visible: show"></p>
+				</ul>
+
+	    	</div><!-- /.navbar-collapse -->
+	  	</div><!-- /.container-fluid -->
+	</nav>
 
 	<!-- Google Maps -->
 	<div id="map" class="map"></div>
