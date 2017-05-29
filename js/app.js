@@ -16,15 +16,15 @@ var locationsHK = [
 	},
 	{
 		title: 'Lan Kwai Fong',
-		location: {lat: 22.28084, lng: 114.15567}
+		location: {lat: 22.2810641, lng: 114.155108}
 	},
 	{
 		title: 'Tsim Sha Tsui Nightlife',
-		location: {lat: 22.30109, lng: 114.17334}
+		location: {lat: 22.30108, lng: 114.17338}
 	},
 	{
-		title: 'Ozone Bar Rooftop',
-		location: {lat: 22.30496, lng: 114.16159}
+		title: 'Ozone Rooftop Bar',
+		location: {lat: 22.304373541273197, lng: 114.16114568710327}
 	},
 	{
 		title: 'Wan Chai Nightlife',
@@ -186,7 +186,7 @@ function initMap() {
 	// attach a click event listener to the marker objects and open an info window on click
 	// creates infowindow for each place pin
     var infoWindow = new google.maps.InfoWindow();
-
+	
 	// iterates through all locations and drop pins on every single location
 	for (j = 0; j < locationsHK.length; j++){
 		(function(){
@@ -200,11 +200,11 @@ function initMap() {
 			map: map,
 			title: title,
 			animation: google.maps.Animation.DROP,
-			address: address,
-			id: i
+			address: address
 		});
 		// pushes all locations into markers array
 		markers.push(marker)
+
 		appViewModel.myLocations()[j].marker = marker;
 
 		// Create an onclick event to open an infowindow at each marker.
@@ -240,7 +240,7 @@ function initMap() {
 		// foursquare api url
 		var foursquareUrl = "https://api.foursquare.com/v2/venues/search";// + marker.position.lat() + "," + marker.position.lng();
 		// creating variables outside of the for ajax request for faster loading
-		var venue, name, address, category, foursquareId, contentString;
+		var venue, address, category, foursquareId, contentString;
 		
 		// ajax request - foursquare api data (https://developer.foursquare.com/docs/)
 		$.ajax({
@@ -255,29 +255,19 @@ function initMap() {
 				v: 20170523
 			},
 			success: function(data){
-				// console.log(data);
+				console.log(data);
 					// get venue info
 					venue = data.response.venues[0];
-					// console.log(venue);
-					// get venue name info
-					name = venue.name;
-					// console.log(name);
 					// get venue address info
 					address = venue.location.formattedAddress[0];
-					// console.log(address);
 					// get venue category info
 					category = venue.categories[0].name;
-					// console.log(category);
-					// get venue location address info
-					address = venue.location.address;
-					// console.log(address);
-
+					// gets link of place
 					foursquareId = "https://foursquare.com/v/" + venue.id;
-					// console.log(foursquareId);
-
-					contentString = "<div class='name'>" + "Name: " + title + "</div>" +
-					"<div class='category'>" + "Catergory: " + category + "</div>" +
-					"<div class='address'>" + "Address: " + address + "</div>" +
+					// populates infowindow with api info
+					contentString = "<div class='name'>" + "Name: " + "<span class='info'>" + title + "</span></div>" +
+					"<div class='category'>" + "Catergory: " + "<span class='info'>" + category + "</span></div>" +
+					"<div class='address'>" + "Location: " + "<span class='info'>" + address + "</span></div>" +
 					"<div class='information'>" + "More info: "  + "<a href='" + foursquareId + "'>" + "Click here" + "</a></div>";
 
 					marker.contentString;
@@ -292,14 +282,6 @@ function initMap() {
 	} // end of for loop through markers [j]
 }
 
-// function selectList(){
-// 	if () {
-
-// 	} else if () {
-		
-// 	}
-// }
-
 // Location Constructor
 var Location = function(data){
 	var self = this;
@@ -312,8 +294,9 @@ var Location = function(data){
 var AppViewModel = function(){
 	var self = this;
 	// define Location observable array ()
-	self.myLocations = ko.observableArray();
-	self.filteredInput = ko.observable('');
+	this.myLocations = ko.observableArray();
+	this.filteredInput = ko.observable('');
+	// this.locationsList = ko.observableArray();
 	
 	for (i = 0; i < locationsHK.length; i++) {
 		var place = new Location(locationsHK[i]);
@@ -321,7 +304,7 @@ var AppViewModel = function(){
 	}
 
 	// from http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
-	self.searchFilter = ko.computed(function() {
+	this.searchFilter = ko.computed(function() {
     	var filter = self.filteredInput().toLowerCase();
 	    for (j = 0; j < self.myLocations().length; j++) {
 	    	if (self.myLocations()[j].title.toLowerCase().indexOf(filter) > -1) {
@@ -340,7 +323,7 @@ var AppViewModel = function(){
 	
 	// map marker bounces when location is clicked on list
 	// https://developers.google.com/maps/documentation/javascript/events
-	self.showLocation = function(locations){
+	this.showLocation = function(locations){
         google.maps.event.trigger(locations.marker, 'click');
     };
 };

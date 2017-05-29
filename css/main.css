@@ -34,10 +34,9 @@ html, body {
 }
 
 .places:hover {
-	color: #D81B60;
 	background-color: #42A5F5;
 	display: inline;
-	padding: 10px 10px;
+	padding: 10px 5px;
 	border-radius: 3px;
 }
 
@@ -58,8 +57,15 @@ html, body {
 }
 
 .name, .category, .address, .information {
+	font-family: "Helvetica-neue", sans-serif;
 	color: #000;
 	font-weight: bold;
+}
+
+.info {
+	font-family: "Helvetica Neue", sans-serif;
+	color: #333;
+	font-weight: normal;
 }
 
 /* MEDIA QUERY FOR MOBILE */
