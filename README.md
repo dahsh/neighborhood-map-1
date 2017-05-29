@@ -1,8 +1,6 @@
 # My Favorite Places - Web Application
 
-## Overview
-
-### Project's Goals
+## Project's Goals
 1. Include a list view of my favorite locations
 2. Use Google Maps API and show the list of locations as Map Markers
 3. Include a search bar with filter functionality to show filtered map markers and locations list
