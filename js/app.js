@@ -397,7 +397,7 @@ function initMap() {
                     marker.contentString;
                 },
                 error: function() {
-                    contentString = "<div class='name'>Data is not available. Please try again.</div>";
+                    contentString = "<div class='name'>Data is currently not available. Please try again.</div>";
                 }
             });
 
