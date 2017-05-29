@@ -93,92 +93,92 @@ var locations = [
 ];
 
 // array of locations in San Francisco
-// var locationSF = [
-// 	{
-// 		title: 'Golden Gate Bridge',
-// 		location: {lat: 37.80779, lng: -122.47520}
-// 	},
-// 	{
-// 		title: 'Golden Gate Park',
-// 		location: {lat: 37.77265, lng: -122.46023}
-// 	},
-// 	{
-// 		title: 'Baker Beach',
-// 		location: {lat: 37.79357, lng: -122.48364}
-// 	},
-// 	{
-// 		title: 'Ocean Beach',
-// 		location: {lat: 37.75890, lng: -122.51086}
-// 	},
-// 	{
-// 		title: 'Twin Peaks',
-// 		location: {lat: 37.75441, lng: -122.44768}
-// 	},
-// 	{
-// 		title: 'Dolores Park',
-// 		location: {lat: 37.75959, lng: -122.42702}
-// 	},
-// 	{
-// 		title: 'Fort Mason',
-// 		location: {lat: 37.80679, lng: -122.43141}
-// 	},
-// 	{
-// 		title: 'Palace of Fine Arts',
-// 		location: {lat: 37.80200, lng: -122.44865}
-// 	},
-// 	{
-// 		title: 'AT&T Park',
-// 		location: {lat: 37.77859, lng: -122.38927}
-// 	},
-// 	{
-// 		title: 'Lake Merced',
-// 		location: {lat: 37.72025, lng: -122.48516}
-// 	},
-// 	{
-// 		title: 'California Academy of Science',
-// 		location: {lat: 37.76987, lng: -122.46610}
-// 	},
-// 	{
-// 		title: 'Pier 39',
-// 		location: {lat: 37.80838, lng: -122.41042}
-// 	},
-// 	{
-// 		title: 'Ferry Building',
-// 		location: {lat: 37.79528, lng: -122.39340}
-// 	},
-// 	{
-// 		title: 'House of Air',
-// 		location: {lat: 37.80493, lng: -122.46882}
-// 	},
-// 	{
-// 		title: 'Painted Ladies',
-// 		location: {lat: 37.77626, lng: -122.43275}
-// 	},
-// 	{
-// 		title: 'Lands End Trail',
-// 		location: {lat: 37.78799, lng: -122.50589}
-// 	},
-// 	{
-// 		title: 'El Techo Rooftop',
-// 		location: {lat: 37.75669, lng: -122.41930}
-// 	},
-// 	{
-// 		title: 'Corona Heights Park',
-// 		location: {lat: 37.76517, lng: -122.43845}
-// 	},
-// 	{
-// 		title: 'Coit Tower',
-// 		location: {lat: 37.80239, lng: -122.40582}
-// 	},
-// 	{
-// 		title: 'Lombard Street',
-// 		location: {lat: 37.80214, lng: -122.41874}
-// 	},
-//  {
-	// 	title: 'House of Pancakes',
-	// 	location: {lat: 37.74289, lng: -122.47635}
-//  }
-// ];
+var locationSF = [
+	{
+		title: 'Golden Gate Bridge',
+		location: {lat: 37.80779, lng: -122.47520}
+	},
+	{
+		title: 'Golden Gate Park',
+		location: {lat: 37.77265, lng: -122.46023}
+	},
+	{
+		title: 'Baker Beach',
+		location: {lat: 37.79357, lng: -122.48364}
+	},
+	{
+		title: 'Ocean Beach',
+		location: {lat: 37.75890, lng: -122.51086}
+	},
+	{
+		title: 'Twin Peaks',
+		location: {lat: 37.75441, lng: -122.44768}
+	},
+	{
+		title: 'Dolores Park',
+		location: {lat: 37.75959, lng: -122.42702}
+	},
+	{
+		title: 'Fort Mason',
+		location: {lat: 37.80679, lng: -122.43141}
+	},
+	{
+		title: 'Palace of Fine Arts',
+		location: {lat: 37.80200, lng: -122.44865}
+	},
+	{
+		title: 'AT&T Park',
+		location: {lat: 37.77859, lng: -122.38927}
+	},
+	{
+		title: 'Lake Merced',
+		location: {lat: 37.72025, lng: -122.48516}
+	},
+	{
+		title: 'California Academy of Science',
+		location: {lat: 37.76987, lng: -122.46610}
+	},
+	{
+		title: 'Pier 39',
+		location: {lat: 37.80838, lng: -122.41042}
+	},
+	{
+		title: 'Ferry Building',
+		location: {lat: 37.79528, lng: -122.39340}
+	},
+	{
+		title: 'House of Air',
+		location: {lat: 37.80493, lng: -122.46882}
+	},
+	{
+		title: 'Painted Ladies',
+		location: {lat: 37.77626, lng: -122.43275}
+	},
+	{
+		title: 'Lands End Trail',
+		location: {lat: 37.78799, lng: -122.50589}
+	},
+	{
+		title: 'El Techo Rooftop',
+		location: {lat: 37.75669, lng: -122.41930}
+	},
+	{
+		title: 'Corona Heights Park',
+		location: {lat: 37.76517, lng: -122.43845}
+	},
+	{
+		title: 'Coit Tower',
+		location: {lat: 37.80239, lng: -122.40582}
+	},
+	{
+		title: 'Lombard Street',
+		location: {lat: 37.80214, lng: -122.41874}
+	},
+ 	{
+		title: 'House of Pancakes',
+		location: {lat: 37.74289, lng: -122.47635}
+ 	}
+];
 
 // create a map variable that will be used in initMap()
 var map;
@@ -304,23 +304,15 @@ function initMap() {
 	} // end of for loop through markers [j]
 }
 
-function getMyData(data) {
-
-   // push data from response object in callback function to data observableArray
-    
-}
-
 // Location Constructor
-
 var Location = function(data){
 	var self = this;
 	this.title = data.title;
 	this.location = data.location;
-	this.isVisible = ko.observable(true);
+	this.show = ko.observable(true);
 };
 
 // VIEW MODEL //
-
 var AppViewModel = function(){
 	var self = this;
 	// define Location observable array ()
@@ -335,23 +327,26 @@ var AppViewModel = function(){
 	// from http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
 	self.searchFilter = ko.computed(function() {
     	var filter = self.filteredInput().toLowerCase();
-	    if (!filter) {
-	        return self.myLocations();
-	    } else {
-	        return ko.utils.arrayFilter(self.myLocations(), function(item) {
-	            return item.title.toLowerCase().indexOf(filter) !== -1;
-	        });
-    	}
+	    for (j = 0; j < self.myLocations().length; j++) {
+	    	if (self.myLocations()[j].title.toLowerCase().indexOf(filter) > -1) {
+	    		self.myLocations()[j].show(true);
+	    		if (self.myLocations()[j].marker) {
+	    			self.myLocations()[j].marker.setVisible(true);
+	    		}
+	    	} else {
+	    		self.myLocations()[j].show(false);
+	    		if (self.myLocations()[j].marker) {
+	    			self.myLocations()[j].marker.setVisible(false);
+	    		}
+	    	}
+	    }
 	});
 	
+	// map marker bounces when location is clicked on list
+	// https://developers.google.com/maps/documentation/javascript/events
 	self.showLocation = function(locations){
         google.maps.event.trigger(locations.marker, 'click');
-    };  
-    // If you want to get the data for all locations on initial page load
-    // getMyData(self.myLocations)
-
-// https://classroom.udacity.com/nanodegrees/nd001/parts/e87c34bf-a9c0-415f-b007-c2c2d7eead73/modules/271165859175461/lessons/3406489055/concepts/34648186930923
-
+    };
 };
 
 // instantiate the ViewModel using the new operator and apply the bindings (aka activate KO)
