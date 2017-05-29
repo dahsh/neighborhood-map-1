@@ -1,5 +1,7 @@
 # My Favorite Places - Web Application
 
+This is an asynchronous web application featuring a map with buttons (choices) to choose between Hong Kong or San Francisco. Depending on which list is chosen, a list of my favorite locations as well as map markers will be shown. The reason I built this web application is for my nomad friends who frequently visit the met areas of Hong Kong and/or San Francisco and often ask what to do, where to go, and what to eat. These lists of locations include some of the places I used to hang out when I lived there. In short, if you are visiting Hong Kong or San Francisco, you should check out these places. I am sure you will love them!
+
 ## Project's Goals
 1. Include a list view of my favorite locations
 2. Use Google Maps API and show the list of locations as Map Markers

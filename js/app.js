@@ -344,6 +344,7 @@ function initMap() {
                 if (infoWindow.marker != marker) {
                     infoWindow.marker = marker;
                     infoWindow.setContent('<div class="title">' + marker.title + '</div>' + marker.contentString);
+                    // sets animation to bounce 2 times when marker is clicked
                     marker.setAnimation(google.maps.Animation.BOUNCE);
                     setTimeout(function() {
                         marker.setAnimation(null);
@@ -373,9 +374,9 @@ function initMap() {
                 data: {
                     client_id: client_id,
                     client_secret: client_secret,
-                    query: marker.title,
+                    query: marker.title, // gets data from marker.title (array of object)
                     near: "Hong Kong",
-                    v: 20170523
+                    v: 20170523 // version equals date
                 },
                 success: function(data) {
                     // console.log(data);
@@ -416,11 +417,11 @@ var Location = function(data) {
 // VIEW MODEL //
 var AppViewModel = function() {
     var self = this;
-    // define Location observable array ()
+    // define Location observable array () // Observables and Observable Arrays are JS Functions
     this.myLocations = ko.observableArray();
     this.filteredInput = ko.observable('');
     // this.locationsList = ko.observableArray();
-    
+
     for (i = 0; i < locationsHK.length; i++) {
         var place = new Location(locationsHK[i]);
         self.myLocations.push(place);
@@ -428,17 +429,19 @@ var AppViewModel = function() {
 
     // from http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
     this.searchFilter = ko.computed(function() {
-        var filter = self.filteredInput().toLowerCase();
+        var filter = self.filteredInput().toLowerCase(); // listens to what user types in to the input search bar
+        // iterates through myLocations observable array
         for (j = 0; j < self.myLocations().length; j++) {
+        	// it filters myLocations as user starts typing
             if (self.myLocations()[j].title.toLowerCase().indexOf(filter) > -1) {
-                self.myLocations()[j].show(true);
+                self.myLocations()[j].show(true); // shows locations according to match with user key words
                 if (self.myLocations()[j].marker) {
-                    self.myLocations()[j].marker.setVisible(true);
+                    self.myLocations()[j].marker.setVisible(true); // shows/filters map markers according to match with user key words
                 }
             } else {
-                self.myLocations()[j].show(false);
+                self.myLocations()[j].show(false); // hides locations according to match with user key words
                 if (self.myLocations()[j].marker) {
-                    self.myLocations()[j].marker.setVisible(false);
+                    self.myLocations()[j].marker.setVisible(false); // hides map markers according to match with user key words
                 }
             }
         }
