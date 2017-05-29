@@ -24,8 +24,8 @@
 3. Open index.html on your browser
 
 ### Resources
-* Knockoutjs.com (http://knockoutjs.com/index.html)
-* Google Maps API (https://developers.google.com/maps/)
-* Foursquare Developer API (https://developer.foursquare.com/)
+* [Knockoutjs.com] (http://knockoutjs.com/index.html)
+* [Google Maps API] (https://developers.google.com/maps/)
+* [Foursquare Developer API] (https://developer.foursquare.com/)
 
 ###### Richard
