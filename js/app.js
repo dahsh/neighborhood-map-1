@@ -324,7 +324,7 @@ function initMap() {
                 address: address
             });
             // pushes all locations into markers array
-            markers.push(marker)
+            markers.push(marker);
 
             appViewModel.myLocations()[j].marker = marker;
 
@@ -397,13 +397,17 @@ function initMap() {
                     marker.contentString;
                 },
                 error: function() {
-                    console.log("It's taking longer than expected to retrieve data from foursquare. Please try again.");
+                    contentString = "<div class='name'>Data is not available. Please try again.</div>";
                 }
             });
 
         })(j);
 
     } // end of for loop through markers [j]
+}
+
+function mapError() {
+    alert("Map could not be loaded at this moment. Please try again");
 }
 
 // Location Constructor
